@@ -43,7 +43,7 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
-        public IActionResult UserDashboard()
+        public IActionResult PatientDashboard()
         {
             return View();
         }
@@ -55,7 +55,7 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
-        public IActionResult PatientDashboard()
+        public IActionResult DoctorDashboard()
         {
             return View();
         }

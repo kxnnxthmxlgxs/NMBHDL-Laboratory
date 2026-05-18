@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Admin Dashboard</title>
+    <title>Lab Technician Dashboard</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -27,12 +27,12 @@
 
                 <div class="profile-info">
                     <div class="profile-text">Mr</div>
-                    <div class="profile-text">Karabo Modau</div>
+                    <div class="profile-text">Keenen James</div>
                 </div>
             </div>
 
             <div class="profile-role">
-                Administrator
+                Lab Technician
             </div>
 
         </div>
@@ -40,20 +40,22 @@
        
         
         <div class="sidebar-bottom">
-          
+
             <a asp-controller="Home" asp-action="Index" class="sidebar-link">
-                <i class="fa-solid fa-virus"></i> Medical Conditions
+                Dashboard
             </a>
 
             <a asp-controller="Admin" asp-action="Users" class="sidebar-link">
-                <i class="fa-solid fa-hand-dots"></i> Allergies
+                Users
             </a>
 
             <a asp-controller="Admin" asp-action="Reports" class="sidebar-link">
-                <i class="fa-solid fa-capsules"></i> Medication
+                Reports
             </a>
 
-            
+            <a asp-controller="Admin" asp-action="Settings" class="sidebar-link">
+                Settings
+            </a>
 
             <div class="sidebar-actions">
 

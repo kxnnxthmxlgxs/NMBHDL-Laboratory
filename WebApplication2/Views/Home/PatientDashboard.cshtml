@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Admin Dashboard</title>
+    <title>Patient Dashboard</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -26,13 +26,13 @@
                 <i class="fa-solid fa-user"></i>
 
                 <div class="profile-info">
-                    <div class="profile-text">Mr</div>
-                    <div class="profile-text">Karabo Modau</div>
+                    <div class="profile-text">Mrs</div>
+                    <div class="profile-text">Lindiwe Mhlongo</div>
                 </div>
             </div>
 
             <div class="profile-role">
-                Administrator
+                Patient
             </div>
 
         </div>
@@ -40,20 +40,22 @@
        
         
         <div class="sidebar-bottom">
-          
+
             <a asp-controller="Home" asp-action="Index" class="sidebar-link">
-                <i class="fa-solid fa-virus"></i> Medical Conditions
+                <i class="fa-solid fa-flask"></i> View Test Requests & Results
             </a>
 
             <a asp-controller="Admin" asp-action="Users" class="sidebar-link">
-                <i class="fa-solid fa-hand-dots"></i> Allergies
+                <i class="fa-solid fa-file-medical"></i> Medical History
+            </a>    
+
+            <a asp-controller="Admin" asp-action="Settings" class="sidebar-link">
+                <i class="fa-solid fa-lock"></i> Consent Management
             </a>
 
             <a asp-controller="Admin" asp-action="Reports" class="sidebar-link">
-                <i class="fa-solid fa-capsules"></i> Medication
+                <i class="fa-solid fa-chart-line"></i> Reports
             </a>
-
-            
 
             <div class="sidebar-actions">
 
