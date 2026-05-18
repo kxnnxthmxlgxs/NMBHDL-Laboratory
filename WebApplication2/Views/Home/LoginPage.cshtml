@@ -147,12 +147,12 @@
 
             <h2 class="login-title">Login</h2>
 
-            <form asp-controller="Home" asp-action="Login">
+            <form asp-controller="Home" asp-action="Login" method="post">
 
                
                 <div class="mb-3">
                     <label class="form-label">Username</label>
-                    <input type="text" class="form-control" placeholder="Enter username" />
+                    <input type="text" name="Username" class="form-control" placeholder="Enter username" />
                 </div>
 
   
@@ -176,14 +176,20 @@
              
                 <div class="d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-primary px-5">
-                        Login
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
                     </button>
                 </div>
 
                 
                 <div class="text-center mt-3">
                     <a href="javascript:void(0)" class="register-link" onclick="openRegisterModal()">
-                        Register
+                        <i class="fa-solid fa-person-circle-plus"></i> Register
+                    </a>
+                </div>
+
+               <div class="text-center mt-3">
+                    <a href="javascript:void(0)" class="register-link" onclick="openForgotModal()">
+                        <i class="fa-solid fa-circle-question"></i> Forgot Password?
                     </a>
                 </div>
 
@@ -215,6 +221,46 @@
 
             function closeRegisterModal() {
                 document.getElementById("registerModal").style.display = "none";
+            }
+
+                    function openForgotModal() {
+                document.getElementById("forgotModal").style.display = "flex";
+            }
+
+            function closeForgotModal() {
+                document.getElementById("forgotModal").style.display = "none";
+            }
+
+            function searchUser() {
+                const email = document.getElementById("searchEmail").value;
+
+                fetch('/Account/FindUserByEmail?email=' + email)
+                    .then(res => res.json())
+                    .then(data => {
+
+                        if (data.found) {
+                            document.getElementById("resetSection").style.display = "block";
+                        } else {
+                            alert("Email not found");
+                        }
+
+                    });
+            }
+
+            function resetPassword() {
+                const email = document.getElementById("searchEmail").value;
+                const password = document.getElementById("newPassword").value;
+
+                fetch('/Account/ResetPassword', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, password: password })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert("Password reset successful");
+                    closeForgotModal();
+                });
             }
     </script>
 
@@ -272,6 +318,41 @@
                 </button>
 
             </form>
+
+        </div>
+
+    </div>
+
+    <div id="forgotModal" class="modal-overlay">
+
+        <div class="modal-box">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5>Forgot Password</h5>
+
+                <button type="button" class="btn-close" onclick="closeForgotModal()"></button>
+            </div>
+
+            <!-- SEARCH EMAIL -->
+            <div class="input-group mb-3">
+                <input type="email" id="searchEmail" class="form-control" placeholder="Enter email" />
+
+                <button class="btn btn-outline-primary" type="button" onclick="searchUser()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+            <!-- RESET SECTION (hidden first) -->
+            <div id="resetSection" style="display:none;">
+
+                <input type="password" id="newPassword" class="form-control mb-2" placeholder="New Password" />
+                <input type="password" id="confirmPassword" class="form-control mb-2" placeholder="Confirm Password" />
+
+                <button class="btn btn-primary w-100" onclick="resetPassword()">
+                    Reset Password
+                </button>
+
+            </div>
 
         </div>
 

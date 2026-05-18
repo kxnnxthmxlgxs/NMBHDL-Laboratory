@@ -29,13 +29,32 @@ namespace WebApplication2.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+       
+
         public IActionResult LoginPage()
         {
             return View();
         }
-
-        public IActionResult Login()
+        [HttpPost]
+        public IActionResult Login(string Username)
         {
+            var user = Username?.Trim().ToLower();
+
+            if (user == "admin")
+                return RedirectToAction("AdminDashboard");
+
+            if (user == "laboratory manager")
+                return RedirectToAction("LabManagerDashboard");
+
+            if (user == "doctor")
+                return RedirectToAction("DoctorDashboard");
+
+            if (user == "lab technician")
+                return RedirectToAction("LabTechnicianDashboard");
+
+            if (user == "patient")
+                return RedirectToAction("PatientDashboard");
+
             return View();
         }
 
