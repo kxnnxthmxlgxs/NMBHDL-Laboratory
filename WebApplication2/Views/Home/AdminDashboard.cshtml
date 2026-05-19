@@ -41,15 +41,21 @@
         
         <div class="sidebar-bottom">
           
-            <a asp-controller="Home" asp-action="Index" class="sidebar-link">
+            <a href="#"
+               class="sidebar-link ajax-link"
+               data-url="@Url.Action("AddMedicalConditions", "Admin")">
                 <i class="fa-solid fa-virus"></i> Medical Conditions
             </a>
 
-            <a asp-controller="Admin" asp-action="Users" class="sidebar-link">
+            <a href="#"
+               class="sidebar-link ajax-link"
+               data-url="@Url.Action("AddAllergies", "Admin")">
                 <i class="fa-solid fa-hand-dots"></i> Allergies
             </a>
 
-            <a asp-controller="Admin" asp-action="Reports" class="sidebar-link">
+            <a href="#"
+               class="sidebar-link ajax-link"
+               data-url="@Url.Action("AddMedication", "Admin")">
                 <i class="fa-solid fa-capsules"></i> Medication
             </a>
 
@@ -78,15 +84,31 @@
 
     <!-- AJAX CONTENT LOADER -->
     <script>
-            function loadSection(section) {
 
-                fetch('/Home/LoadDashboardSection?section=' + section)
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById("mainContent").innerHTML = html;
-                    });
+        document.addEventListener("DOMContentLoaded", function () {
 
-            }
+            document.querySelectorAll(".ajax-link").forEach(link => {
+
+                link.addEventListener("click", function (e) {
+
+                    e.preventDefault(); // STOP FULL PAGE REFRESH
+
+                    const url = this.dataset.url;
+
+                    fetch(url)
+                        .then(res => res.text())
+                        .then(html => {
+
+                            document.getElementById("mainContent").innerHTML = html;
+
+                        });
+
+                });
+
+            });
+
+        });
+
     </script>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
